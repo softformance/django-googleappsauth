@@ -8,10 +8,13 @@ Copyright (c) 2009 HUDORA GmbH. All rights reserved.
 """
 
 from datetime import datetime
+
+from googleappsauth.compat import SiteProfileNotAvailable
+
 from django.conf import settings
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth.models import User, SiteProfileNotAvailable
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 import re
