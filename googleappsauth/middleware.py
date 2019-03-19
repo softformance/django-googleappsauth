@@ -15,8 +15,13 @@ import django.contrib.auth as djauth
 from googleappsauth.compat import SiteProfileNotAvailable
 import googleappsauth.views
 
+try:
+    from django.utils.deprecation import MiddlewareMixin
+except ImportError:
+    MiddlewareMixin = object
 
-class GoogleAuthMiddleware(object):
+
+class GoogleAuthMiddleware(MiddlewareMixin):
     """Force Google Apps Authentication for the whole site.
     
     Using settings.AUTH_PROTECTED_AREAS you can restrict authentication 
