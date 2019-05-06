@@ -38,7 +38,7 @@ class GoogleAuthBackend(ModelBackend):
             user.set_unusable_password()
             # note creation in log
             LogEntry.objects.log_action(1, ContentType.objects.get_for_model(User).id,
-                                    user.id, unicode(User),
+                                    user.id, str(User),
                                     ADDITION, "durch googleauth automatisch erzeugt")
         else:
             user = users[0]

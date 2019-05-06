@@ -8,7 +8,7 @@ Copyright (c) 2009 HUDORA GmbH. All rights reserved.
 """
 
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 
 class OpenIdError(Exception):
@@ -59,7 +59,7 @@ def build_login_url(endpoint_url, realm, callback_url, oauth_consumer=None, oaut
     # jetzt bauen wir die Parameter zusammen mit der URL des OpenID-
     # Endpoints noch zu einer kompletten URL zusammen und liefern
     # diese zurueck
-    urlencoded_params = urllib.urlencode(params)
+    urlencoded_params = urllib.parse.urlencode(params)
     redirect_url = endpoint_url
     if endpoint_url.find('?') == -1:
         redirect_url += '?%s' % urlencoded_params
@@ -119,7 +119,7 @@ def _get_request_args(request):
 
 
 def _lookup_key(args, key_pattern):
-    for key, value in args.items():
+    for key, value in list(args.items()):
         if key == key_pattern or re.search(key_pattern, key):
             if isinstance(value, list):
                 return value[0]

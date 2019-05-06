@@ -58,7 +58,7 @@ def login(request, redirect_field_name=REDIRECT_FIELD_NAME, redirect_url=None):
     # dann zeigen wir jetzt zuerst noch eine Auswahlbox fuer die 
     # gewuenschte Login-Domain an.
     if not login_domain:
-        if type(_google_apps_domain) == types.ListType:
+        if type(_google_apps_domain) == list:
             return render_to_response('googleappsauth/domains.html', 
                                       { 'login_url': _login_url, 'domains': _google_apps_domain })
         else:

@@ -7,8 +7,8 @@ Created by Axel Schlüter on 2009-12
 Copyright (c) 2009 HUDORA GmbH. All rights reserved.
 """
 
-import oauth
-import httplib
+from . import oauth
+import http.client
 import random
 from django.conf import settings
 
@@ -29,7 +29,7 @@ PROFILES_URL = 'http://%s/m8/feeds/profiles/domain/%s/full/' % (SERVER, _apps_do
 
 """ die globalen Objekte zum Zugriff auf Google OAuth """
 _consumer = oauth.OAuthConsumer(_consumer_key, _consumer_secret)
-_connection = httplib.HTTPSConnection(SERVER)
+_connection = http.client.HTTPSConnection(SERVER)
 _signature_method = oauth.OAuthSignatureMethod_HMAC_SHA1()
 
 
