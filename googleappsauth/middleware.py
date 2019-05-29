@@ -10,7 +10,10 @@ Copyright (c) 2009, 2010 HUDORA GmbH. All rights reserved.
 from django.conf import settings
 from django.contrib.auth.models import User 
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:  # Django < 2.0
+    from django.core.urlresolvers import reverse
 import django.contrib.auth as djauth
 from googleappsauth.compat import SiteProfileNotAvailable
 import googleappsauth.views
