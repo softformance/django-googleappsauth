@@ -15,6 +15,8 @@ import django.contrib.auth as djauth
 from googleappsauth.compat import SiteProfileNotAvailable
 import googleappsauth.views
 
+from .compat import is_authenticated
+
 try:
     from django.utils.deprecation import MiddlewareMixin
 except ImportError:
@@ -57,7 +59,7 @@ class GoogleAuthMiddleware(MiddlewareMixin):
 
         # ok, die Seite muss auth'd werden. Haben wir vielleicht
         # schon einen geauth'd User in der aktuellen Session? 
-        if request.user.is_authenticated():
+        if is_authenticated(request.user):
             return
         
         # nein, wir haben noch keinen User. Also den Login ueber
